@@ -24,8 +24,7 @@ class DataConverter
     when HASH
       list = <<-DL
 <dl>
-#{ convert_to_dl_childs(data).join("\n") }
-</dl>
+#{ convert_to_dl_childs(data) }</dl>
       DL
     else
       return data
@@ -52,11 +51,11 @@ class DataConverter
   def convert_to_dl_childs(data)
     childs = ""
     data.each_pair do | key, value |
-      childs += "<dt>#{ key }</dt>"
+      childs += "<dt>#{ key }</dt>\n"
       if check_data?(value)
-        childs += "<dd>#{ convert(value) }</dd>"
+        childs += "<dd>#{ convert(value) }</dd>\n"
       else
-        childs += "<dd>#{ value }</dd>"
+        childs += "<dd>#{ value }</dd>\n"
       end
     end
     childs

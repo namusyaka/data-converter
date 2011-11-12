@@ -50,13 +50,13 @@ class DataConverter
   end
 
   def convert_to_dl_childs(data)
-    childs = []
+    childs = ""
     data.each_pair do | key, value |
-      childs << "<dt>#{ key }</dt>"
+      childs += "<dt>#{ key }</dt>"
       if check_data?(value)
-        childs << "<dd>#{ convert(value) }</dd>"
+        childs += "<dd>#{ convert(value) }</dd>"
       else
-        childs << "<dd>#{ value }</dd>"
+        childs += "<dd>#{ value }</dd>"
       end
     end
     childs

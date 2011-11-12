@@ -45,13 +45,13 @@ class Test_DataConverter < Test::Unit::TestCase
     @class = DataConverter
   end
  
-   def test_array_parse
-     assert_equal(ARRAY_RESULT, @class.parse(@array_data))
-   end
+  def test_array_parse
+    assert_equal(ARRAY_RESULT, @class.parse(@array_data))
+  end
  
-   def test_hash_parse
-     assert_equal(HASH_RESULT, @class.parse(@hash_data))
-   end
+  def test_hash_parse
+    assert_equal(HASH_RESULT, @class.parse(@hash_data))
+  end
  
   def test_other_approach
     assert_equal(HASH_RESULT, DataConverter.new(@hash_data).convert)

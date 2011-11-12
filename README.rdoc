@@ -1,0 +1,23 @@
+=data-converter
+
+==Install
+  gem install data-converter
+
+==Description
+  Hash and Array convert to HTML Element (Array => ul, Hash => dl).
+  It's under the development.
+
+==Code
+  require 'rubygems'
+  require 'data-converter'
+
+  puts DataConverter.parse({
+    :a => "b",
+    :c => { :d => [0, 1, 2] }
+  })
+  
+==License
+  the MIT License
+
+==Author
+  namusyaka

@@ -49,7 +49,7 @@ class DataConverter
       if check_data?(e)
         "<li>#{ convert(e) }</li>"
       else
-        "<li>#{ e }</li>"
+        "<li>#{ e.to_s.escapeHTML }</li>"
       end
     end
   end
@@ -57,11 +57,11 @@ class DataConverter
   def convert_to_dl_childs(data)
     childs = ""
     data.each_pair do | key, value |
-      childs += "<dt>#{ key }</dt>\n"
+      childs += "<dt>#{ key.to_s.escapeHTML }</dt>\n"
       if check_data?(value)
         childs += "<dd>#{ convert(value) }</dd>\n"
       else
-        childs += "<dd>#{ value }</dd>\n"
+        childs += "<dd>#{ value.to_s.escapeHTML }</dd>\n"
       end
     end
     childs

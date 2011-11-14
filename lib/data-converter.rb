@@ -1,3 +1,9 @@
+class String
+  def escapeHTML
+    self.gsub(/&/n, '&amp;').gsub(/\"/n, '&quot;').gsub(/>/n, '&gt;').gsub(/</n, '&lt;').gsub(/'/, '&#039;')
+  end
+end
+
 class DataConverter
   attr_reader :data
 

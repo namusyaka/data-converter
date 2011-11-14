@@ -1,6 +1,6 @@
 Gem::Specification.new do | spec |
   spec.name = "data-converter"
-  spec.version = "0.1"
+  spec.version = "0.1.5"
   spec.summary = "Ruby Data convert to HTML. It is under the devlopment."
   spec.description = "Hash and Array convert to HTML Element (Array => ul, Hash => dl)."
   spec.homepage = "https://github.com/namusyaka/data-converter"

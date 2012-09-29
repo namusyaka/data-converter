@@ -13,11 +13,13 @@ class DataConverter
 
   def self.parse(data)
     constructor = self.new(data)
-    constructor.convert(constructor.data)
+    constructor.convert
   end
   
-  def convert(data = @data)
-    case data.class
+  def convert(data = nil)
+    data = @data unless data
+
+    case data
     when Array
       list = <<-UL
 <ul>

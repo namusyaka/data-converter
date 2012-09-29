@@ -7,9 +7,6 @@ end
 class DataConverter
   attr_reader :data
 
-  ARRAY = "Array"
-  HASH = "Hash"
-
   def initialize(data)
     @data = data
   end
@@ -20,14 +17,14 @@ class DataConverter
   end
   
   def convert(data = @data)
-    case data.class.to_s
-    when ARRAY
+    case data.class
+    when Array
       list = <<-UL
 <ul>
 #{ convert_to_li(data).join("\n") }
 </ul>
       UL
-    when HASH
+    when Hash
       list = <<-DL
 <dl>
 #{ convert_to_dl_childs(data) }</dl>

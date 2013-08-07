@@ -1,6 +1,6 @@
 require File.expand_path("../lib/version", __FILE__)
 
-Gem::Specification.new "botch", DataConverter::VERSION do |s|
+Gem::Specification.new "data-converter", DataConverter::VERSION do |s|
   s.summary          = "Convert hash and array into HTML Element."
   s.description      = "Convert hash and array into HTML Element."
   s.authors          = ["namusyaka"]

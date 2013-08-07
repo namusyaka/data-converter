@@ -1,11 +1,14 @@
-class String
-  def escapeHTML
-    self.gsub(/&/n, '&amp;').gsub(/\"/n, '&quot;').gsub(/>/n, '&gt;').gsub(/</n, '&lt;').gsub(/'/, '&#039;')
-  end
-end
-
 class DataConverter
   attr_reader :data
+
+  ESCAPE_VALUES = {
+    "&" => "&amp;",
+    "<" => "&lt;",
+    ">" => "&gt;",
+    '"' => "&quot;"
+  }
+
+  ESCAPE_REGEXP = Regexp.union(*ESCAPE_VALUES.keys)
 
   def initialize(data)
     @data = data
@@ -21,20 +24,12 @@ class DataConverter
 
     case data
     when Array
-      list = <<-UL
-<ul>
-#{ convert_to_li(data).join("\n") }
-</ul>
-      UL
+      tag(:ul, convert_to_li(data), :escaped => true)
     when Hash
-      list = <<-DL
-<dl>
-#{ convert_to_dl_childs(data) }</dl>
-      DL
+      tag(:dl, convert_to_dl_childs(data), :escaped => true)
     else
-      return data
+      data
     end
-    list
   end
 
   private
@@ -44,25 +39,34 @@ class DataConverter
   end
   
   def convert_to_li(data)
-    data.map! do | e |
-      if check_data?(e)
-        "<li>#{ convert(e) }</li>"
+    data.map do |caption|
+      if check_data?(caption)
+        tag(:li, convert(caption), :escaped => true)
       else
-        "<li>#{ e.to_s.escapeHTML }</li>"
+        tag(:li, caption)
       end
-    end
+    end.join("\n")
   end
 
   def convert_to_dl_childs(data)
-    childs = ""
+    childs = []
     data.each_pair do | key, value |
-      childs += "<dt>#{ key.to_s.escapeHTML }</dt>\n"
+      childs << tag(:dt, key)
       if check_data?(value)
-        childs += "<dd>#{ convert(value) }</dd>\n"
+        childs << tag(:dd, convert(value), :escaped => true)
       else
-        childs += "<dd>#{ value.to_s.escapeHTML }</dd>\n"
+        childs << tag(:dd, value)
       end
     end
-    childs
+    childs.join("\n")
+  end
+
+  def tag(name, caption, options = {})
+    caption = caption.to_s
+    "<#{name}>#{options[:escaped] ? caption : escape_html(caption)}</#{name}>"
+  end
+
+  def escape_html(str)
+    str.to_s.gsub(ESCAPE_REGEXP) { |char| ESCAPE_VALUES[char] }
   end
 end

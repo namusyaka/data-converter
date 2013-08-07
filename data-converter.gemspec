@@ -1,17 +1,16 @@
-Gem::Specification.new do | spec |
-  spec.name = "data-converter"
-  spec.version = "0.1.6"
-  spec.summary = "It is under the devlopment."
-  spec.description = "Convert hash and array into HTML Element (Array => ul, Hash => dl)."
-  spec.homepage = "https://github.com/namusyaka/data-converter"
-  spec.author = "namusyaka"
-  spec.email = "namusyaka@gmail.com"
-  spec.files = %w(
-data-converter.gemspec
-README.rdoc
-lib
-test
-lib/data-converter.rb
-test/test.rb
-)
+require File.expand_path("../lib/version", __FILE__)
+
+Gem::Specification.new "botch", DataConverter::VERSION do |s|
+  s.summary          = "Convert hash and array into HTML Element."
+  s.description      = "Convert hash and array into HTML Element."
+  s.authors          = ["namusyaka"]
+  s.email            = "namusyaka@gmail.com"
+  s.homepage         = "https://github.com/namusyaka/data-converter"
+  s.files            = `git ls-files`.split("\n") - %w(.gitignore)
+  s.test_files       = s.files.select { |path| path =~ /^spec\/.*_spec\.rb/ }
+  s.license          = "MIT"
+
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec-html-matchers"
 end

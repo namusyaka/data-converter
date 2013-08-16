@@ -17,7 +17,7 @@ or
 ```ruby
 require 'data-converter'
 
-DataConverter.parse([0,1,2,3]) #=> "<ul><li>0</li><li>1</li><li>2</li></ul>"
+DataConverter.parse([0,1,2,3]) #=> "<ul><li>0</li><li>1</li><li>2</li><li>3</li></ul>"
 DataConverter.parse(:foo => "bar") #=> "<dl><dt>foo</dt><dd>bar</dd></dl>"
 ```
 
